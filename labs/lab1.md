@@ -11,14 +11,15 @@ Avoir accès au groupe EI8IT213 de l'organisation GitLab Bordeaux INP.
 
 Etre répartis en groupe de 2 personnes pour les TP.
 
-## Création du projet sur GiLab
+## Création du projet sur GitLab
 
-Afin de faire de pouvoir faire les labs, chaque groupe créera son projet sur GitLab à partir d'un projet existant. Le projet à "forker" est disponible sur GitLab: https://gitlab.com/bordeauxinp/ei8it213/vue-2048
+Afin de pouvoir faire les labs, chaque groupe créera son projet sur GitLab à partir d'un projet existant. Le projet à duppliquer/"forker" est disponible sur GitLab: https://gitlab.com/bordeauxinp/ei8it213/vue-2048
 
-1. Créer un fork du projet en cliquant sur le bouton Forks
-    1. Le nom du fork doit être suffixé par les intiales des membres du groupe de TP
+1. Créer un fork du projet en cliquant sur le bouton Fork
+    1. Le nom du fork doit être préfixé par les initiales des membres du groupe de TP
     2. Le namespace "bordeauxinp/ei8it213" doit être choisi dans l'URL du projet
     3. Les noms des membres du groupe de TP doivent être indiqués dans la description du projet
+    4. Valider
 2. Ajouter les 2 membres du groupe projet en Owner du projet
 
 ## Installation des logiciels nécessaires
@@ -31,9 +32,14 @@ Afin de faire de pouvoir faire les labs, chaque groupe créera son projet sur Gi
     - si pas déjà installée sur la machine
     - en utilisant pnpm via la commande `pnpm env use --global lts`
 
-## Lancer le projet en local
+## Récupérer et configurer le projet en local
 
 1. Cloner le projet précédemment créé
-2. Suivez les instructions contenues dans le readme du projet pour lancer le projet
-3. Vérifier que l'application fonctionne correctement en local
+2. Ajouter un nouveau dépôt distant en amont pour récupérer les modifications qui seront apportées sur le répertoire d'origine grâce à la commande 
+`git remote add upstream https://gitlab.com/bordeauxinp/ei8it213/vue-2048.git`
 
+> Pour récupérer les dernières modifications du répertoire d'origin il suffit de faire un `git pull upstream`
+
+## Lancer l'application en local
+
+Suivre les instructions contenues dans le readme du projet pour lancer le projet
