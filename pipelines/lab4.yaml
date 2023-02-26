@@ -28,6 +28,7 @@ build-package:
     script:
         - pnpm build
     artifacts:
+        name: "$CI_PROJECT_TITLE-$Version"
         paths:
             - dist/
 
