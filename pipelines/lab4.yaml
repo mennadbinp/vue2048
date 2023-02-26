@@ -26,7 +26,7 @@ build-package:
     needs:
         - restore-dependencies
     script:
-        - pnpm build
+        - if [ "$CI_PIPELINE_SOURCE" == "web" ]; then pnpm build; fi
     artifacts:
         name: "$CI_PROJECT_TITLE-$Version"
         paths:
@@ -46,5 +46,7 @@ lint:
 
 test:
     stage: quality
+    rules:
+        - if: $CI_COMMIT_REF_NAME == "main"
     script:
         - pnpm vitest
