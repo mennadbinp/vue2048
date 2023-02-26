@@ -21,16 +21,39 @@ restore-dependencies:
     script:
         - pnpm install
 
+# Condition directly in the script
+# build-package:
+#     stage: build
+#     needs:
+#         - restore-dependencies
+#     script:
+#         - if [ "$CI_PIPELINE_SOURCE" == "web" ]; then pnpm build; fi
+#     artifacts:
+#         name: "$CI_PROJECT_TITLE-$Version"
+#         paths:
+#             - dist/
+
+build-package:on-web:
+    stage: build
+    needs:
+        - restore-dependencies
+    script:
+        - pnpm build
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "web"
+    artifacts:
+        name: "$CI_PROJECT_TITLE-$Version"
+        paths:
+            - dist/
+
 build-package:
     stage: build
     needs:
         - restore-dependencies
     script:
-        - if [ "$CI_PIPELINE_SOURCE" == "web" ]; then pnpm build; fi
-    artifacts:
-        name: "$CI_PROJECT_TITLE-$Version"
-        paths:
-            - dist/
+        - pnpm build
+    rules:
+        - if: $CI_PIPELINE_SOURCE != "web"
 
 static-typing:
     stage: quality
