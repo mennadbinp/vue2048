@@ -1,3 +1,8 @@
+workflow:
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^feature\//'
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
 stages:
     - build
     - quality
@@ -73,3 +78,14 @@ test:
         - if: $CI_COMMIT_REF_NAME == "main"
     script:
         - pnpm vitest
+
+security-analysis:
+    stage: quality
+    script:
+        - pnpm outdated --format json > ./outdated-dependencies.json || true
+        - pnpm audit --json > ./vulnerable-dependencies.json || true
+    artifacts:
+        name: reports
+        paths:
+            - ./outdated-dependencies.json
+            - ./vulnerable-dependencies.json
